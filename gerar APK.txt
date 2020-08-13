@@ -1,8 +1,0 @@
-$ ionic cordova build android --prod --optimizejs --release
-
-$ cd platforms/android/app/build/outputs/apk/release
-
-$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore gamapergunta.keystore app-release-unsigned.apk gamapergunta
-Enter Passphrase for keystore:
-
-$ zipalign -v 4 app-release-unsigned.apk gamapergunta-signed.apk
