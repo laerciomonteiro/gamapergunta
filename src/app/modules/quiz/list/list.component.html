@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false" (click)="openMenu()"></ion-menu-button>
+    </ion-buttons>
+    <ion-title align="center">
+      Gama Pergunta
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg">
+  <ion-refresher (ionRefresh)="doRefreshForms($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-segment [(ngModel)]="page" color="dark">
+    <ion-segment-button value="questionarios" (click)="recoveringAnswers()">
+      Questionários
+    </ion-segment-button>
+    <ion-segment-button value="respostas" (click)="recoveringAnswers()">
+      Respostas
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list lines="none" class="app-list" *ngIf="page == 'questionarios'">
+    <ion-card [ngStyle]="{'border-color': '#737373'}" *ngFor="let f of forms" (click)="onSelect(f)" routerDirection="forward">
+      <ion-card-header>
+        <ion-card-subtitle>Criado em {{dateFormatBr(f?.created_at)}}</ion-card-subtitle>
+        <ion-card-title>{{f?.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content *ngIf="isAnswers(f.id) > 1">
+        <strong>{{isAnswers(f.id)}}</strong> respostas coletadas
+      </ion-card-content>
+      <ion-card-content *ngIf="isAnswers(f.id) == 1">
+        <strong>{{isAnswers(f.id)}}</strong> resposta coletada
+      </ion-card-content>
+      <ion-card-content *ngIf="isAnswers(f.id) == []">
+        <strong>{{isAnswers(f.id)}}</strong> resposta coletada
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ion-list class="app-list" *ngIf="page == 'respostas'">
+    
+    <ion-item style="background-color:#999;">  
+      <ion-label *ngIf="!sent && !temp">{{numberQuestions()}} respostas coletadas.</ion-label>
+      <ion-label *ngIf="temp">Enviando respostas...
+        <ion-progress-bar value="{{ count / numberQuestions() }}"></ion-progress-bar>
+      </ion-label>
+      <ion-label *ngIf="sent" style="color: green">Respostas enviadas!</ion-label>
+      
+      <ion-button fill="clear" slot="end" (click)="sendAnswers()" [disabled]="temp">
+        <ion-icon slot="icon-only" name="send"></ion-icon>
+      </ion-button>
+    </ion-item>
+    
+
+    <ion-item *ngFor="let a of answers; let i = index" (click)="viewAnswers(a)">
+      <ion-label>{{ i + 1}} - {{ a.collected_in }}</ion-label>
+      <ion-note slot="end">
+        <ion-icon name="close"></ion-icon>
+      </ion-note>
+    </ion-item>
+  
+  </ion-list>
+
+
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "GamaPergunta",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

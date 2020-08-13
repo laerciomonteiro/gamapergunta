@@ -1,0 +1,78 @@
+<ion-content padding class="login auth-page">
+
+  <div class="auth-content">
+    <!-- Logo -->
+    <div padding-horizontal text-center>
+      <div class="logo"></div>
+      <br>
+      <h3 no-margin>
+        <ion-text color="light" class="fw700">
+          <ion-text color="secondary">Dados do entrevistado</ion-text>
+        </ion-text>
+      </h3>
+    </div>
+    <br>
+    <!-- Register form -->
+    <form [formGroup]="onRegisterForm" class="list-form">
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          Nome completo
+        </ion-label>
+        <ion-input color="secondary" type="text" formControlName="fullName"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="onRegisterForm.get('fullName').touched && onRegisterForm.get('fullName').hasError('required')">
+        <ion-text color="warning">
+          Este campo é obrigatório
+        </ion-text>
+      </p>
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          CPF
+        </ion-label>
+        <ion-input color="secondary" type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="onRegisterForm.get('email').touched && onRegisterForm.get('email').hasError('required')">
+        <ion-text color="warning">
+          Este campo é obrigatório
+        </ion-text>
+      </p>
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          RG
+        </ion-label>
+        <ion-input color="secondary" type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('password').touched && onRegisterForm.get('password').hasError('required')">
+        <ion-text color="warning">
+          Este campo é obrigatório
+        </ion-text>
+      </p>
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          Idade
+        </ion-label>
+        <ion-input color="secondary" type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="onRegisterForm.get('email').touched && onRegisterForm.get('email').hasError('required')">
+        <ion-text color="warning">
+          Este campo é obrigatório
+        </ion-text>
+      </p>
+    </form>
+
+    <div margin-top>
+      <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="signUp()" [disabled]="!onRegisterForm.valid"
+        tappable>
+        Continuar
+      </ion-button>
+      <ion-button icon-left size="medium" expand="full" shape="round" color="dark" [routerLink] = "'/quiz/list'" 
+        tappable>
+        <ion-icon name="arrow-round-back"></ion-icon>
+        Voltar
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>

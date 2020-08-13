@@ -1,0 +1,31 @@
+:host {
+  ion-content {
+      --background: #ddd;
+  }
+}
+
+.paz{
+  font-size: 0.8em;
+}
+
+.header {
+  //border: solid 1px;
+  margin: 0px !important;
+  height: 150px;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+  box-shadow: -3px 3px 5px #666;
+  padding-top: 35px;
+
+}
+
+.question ion-list{
+  background-color: transparent;
+}
+
+.preview{ float: left; }
+.next{ float: right; }
+
+ion-input{
+  font-size: 0.7em;
+}

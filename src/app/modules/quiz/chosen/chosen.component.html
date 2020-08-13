@@ -1,0 +1,41 @@
+<ion-content no-padding class="animated fadeIn login auth-page">
+  <!-- Logo -->
+  <div text-center class="header bg-dark">
+    <h4>
+      <ion-text color="light" class="fw700">
+        {{formChosen?.title}}
+      </ion-text>
+    </h4>
+    <ion-text color="light">
+      Criado em {{formChosen?.created_at}}
+    </ion-text>
+  </div>
+
+  <form [formGroup]="onForm" padding>
+    
+    <ion-list *ngFor="let question of formChosen?.questions; let i=index">
+      
+      <ion-radio-group [formControlName]="option_id(question.id)">
+          <ion-list-header>
+            <h6>{{question.position}} - {{question.title}}</h6>
+          </ion-list-header>
+          <ion-item *ngFor="let option of question?.options">
+            <ion-radio *ngIf="option.type == 'Escolha'" slot="start" [value]="option.id" id="radio{{i}}" (click)="onTextClick('texto'+i, option.id)"></ion-radio>
+            <ion-label *ngIf="option.type == 'Escolha'">{{option.field}}</ion-label>
+            <ion-input *ngIf="option.type == 'Escrita'" (ionBlur)="custom(question.id, option.id)" [placeholder]="option.field" id="texto{{i}}" (ionFocus)="onRadioClick('radio'+i)"></ion-input>
+          </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <br />
+
+    <ion-button class="preview" size="small" shape="round" (click)="goToQuizList()" color="dark" tappable>
+      <ion-icon name="arrow-round-back"></ion-icon> &nbsp;
+      Retornar
+    </ion-button>
+    <ion-button class="next" size="small" shape="round" color="dark" tappable (click)="submitForm()" [disabled]="!onForm.valid">
+      Salvar &nbsp;
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-content no-padding class="animated fadeIn login auth-page">
+
+  <!-- Logo -->
+  <div text-center class="header bg-dark">
+    <img src="assets/img/logo.png" alt="">
+  </div>
+
+  <div class="auth-content">
+
+
+
+    <!-- Login form -->
+    <form [formGroup]="onLoginForm" padding class="list-form">
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="person" item-start></ion-icon>
+          Login
+        </ion-label>
+        <ion-input type="text" formControlName="login"></ion-input>
+      </ion-item>
+      <p ion-text class="text08"
+        *ngIf="onLoginForm.get('login').touched && onLoginForm.get('login').hasError('required')">
+        <ion-text color="warning">
+          Campo obrigatório!
+        </ion-text>
+      </p>
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="lock" item-start></ion-icon>
+          Senha
+        </ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <p ion-text color="warning" class="text08"
+        *ngIf="onLoginForm.get('password').touched && onLoginForm.get('password').hasError('required')">
+        <ion-text color="warning">
+          Campo obrigatório!
+        </ion-text>
+      </p>
+    </form>
+    <div class="bt-form">
+      <ion-button icon-left size="small" expand="full" shape="round" color="dark" (click)="goToHome()"
+        [disabled]="!onLoginForm.valid" tappable>
+        <ion-icon name="log-in"></ion-icon>&nbsp;
+        Acessar
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>
