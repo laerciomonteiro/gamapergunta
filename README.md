@@ -1,4 +1,4 @@
-# GamaPergunta
+# Gama Pergunta
 
 Projeto que desenvolvi em 2019 com Ionic Native 4 e Angular 7. Consiste em um aplicativo que opera offline para coleta de respostas e armazenamento em banco de dados local. Posteriormente, comunica-se com uma API Rest para submissão dos dados em formato JSON, os quais serão convertidos em gráficos para análise estatística.
 
